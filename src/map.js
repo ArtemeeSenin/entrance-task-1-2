@@ -16,7 +16,7 @@ export default function initMap(ymaps, containerId) {
     clusterDisableClickZoom: false,
     geoObjectOpenBalloonOnClick: false,
     geoObjectHideIconOnBalloonOpen: false,
-    geoObjectBalloonContentLayout: getDetailsContentLayout(ymaps)
+    //geoObjectBalloonContentLayout: getDetailsContentLayout(ymaps)
   });
 
   objectManager.clusters.events.add('add', function (e) {
@@ -39,20 +39,21 @@ export default function initMap(ymaps, containerId) {
   });
 
   // details
-  /* objectManager.objects.events.add('click', event => {
+  objectManager.objects.events.add('click', event => {
     const objectId = event.get('objectId');
     const obj = objectManager.objects.getById(objectId);
 
-    objectManager.objects.balloon.open(objectId);
-
-    if (!obj.properties.details) {
+    if (obj.properties.details) {
+      objectManager.objects.balloon.open(objectId);
+    } else {
+      objectManager.objects.balloon.open(objectId);
       loadDetails(objectId).then(data => {
         obj.properties.details = data;
         objectManager.objects.balloon.setData(obj);
       });
     }
-  }); */
-
+  });
+  
   // filters
   const listBoxControl = createFilterControl(ymaps);
   myMap.controls.add(listBoxControl);
