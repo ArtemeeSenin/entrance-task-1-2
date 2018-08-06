@@ -22,7 +22,6 @@ export default function initMap(ymaps, containerId) {
   objectManager.clusters.events.add('add', function (e) {
     var cluster = objectManager.clusters.getById(e.get('objectId')),
         objects = cluster.properties.geoObjects;
-        console.log(objects.some((obj) => !obj.isActive));
     if (objects.some((obj) => !obj.isActive)) {
         objectManager.clusters.setClusterOptions(cluster.id, {
             preset: 'islands#redClusterIcons'
@@ -40,7 +39,7 @@ export default function initMap(ymaps, containerId) {
   });
 
   // details
-  objectManager.objects.events.add('click', event => {
+  /* objectManager.objects.events.add('click', event => {
     const objectId = event.get('objectId');
     const obj = objectManager.objects.getById(objectId);
 
@@ -52,7 +51,7 @@ export default function initMap(ymaps, containerId) {
         objectManager.objects.balloon.setData(obj);
       });
     }
-  });
+  }); */
 
   // filters
   const listBoxControl = createFilterControl(ymaps);
