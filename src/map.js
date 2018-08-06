@@ -19,7 +19,20 @@ export default function initMap(ymaps, containerId) {
     geoObjectBalloonContentLayout: getDetailsContentLayout(ymaps)
   });
 
-  objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
+  objectManager.clusters.events.add('add', function (e) {
+    var cluster = objectManager.clusters.getById(e.get('objectId')),
+        objects = cluster.properties.geoObjects;
+        console.log(objects.some((obj) => !obj.isActive));
+    if (objects.some((obj) => !obj.isActive)) {
+        objectManager.clusters.setClusterOptions(cluster.id, {
+            preset: 'islands#redClusterIcons'
+      });
+    } else {
+      objectManager.clusters.setClusterOptions(cluster.id, {
+        preset: 'islands#blueClusterIcons'
+      });
+    }
+  });
 
   loadList().then(data => {
     objectManager.add(data);
