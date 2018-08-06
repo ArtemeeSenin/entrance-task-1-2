@@ -23,6 +23,7 @@ export default function initMap(ymaps, containerId) {
 
   loadList().then(data => {
     objectManager.add(data);
+    myMap.geoObjects.add(objectManager);
   });
 
   // details
