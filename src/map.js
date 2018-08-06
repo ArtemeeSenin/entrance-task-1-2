@@ -44,7 +44,11 @@ export default function initMap(ymaps, containerId) {
     const obj = objectManager.objects.getById(objectId);
 
     if (obj.properties.details) {
-      objectManager.objects.balloon.open(objectId);
+      if (objectManager.objects.balloon.isOpen(objectId)) {
+        objectManager.objects.balloon.close();
+      } else {
+        objectManager.objects.balloon.open(objectId);
+      }
     } else {
       objectManager.objects.balloon.open(objectId);
       loadDetails(objectId).then(data => {
@@ -53,7 +57,7 @@ export default function initMap(ymaps, containerId) {
       });
     }
   });
-  
+
   // filters
   const listBoxControl = createFilterControl(ymaps);
   myMap.controls.add(listBoxControl);
