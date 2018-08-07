@@ -8,7 +8,8 @@ export default function initMap(ymaps, containerId) {
     controls: [],
     zoom: 10
   });
-
+  
+  
   const objectManager = new ymaps.ObjectManager({
     clusterize: true,
     gridSize: 64,
@@ -16,7 +17,8 @@ export default function initMap(ymaps, containerId) {
     clusterDisableClickZoom: false,
     geoObjectOpenBalloonOnClick: false,
     geoObjectHideIconOnBalloonOpen: false,
-    //geoObjectBalloonContentLayout: getDetailsContentLayout(ymaps)
+    //geoObjectBalloonContentLayout: BalloonLayout,
+    geoObjectBalloonContentLayout: getDetailsContentLayout(ymaps)
   });
 
   objectManager.clusters.events.add('add', function (e) {
