@@ -17,7 +17,6 @@ export default function initMap(ymaps, containerId) {
     clusterDisableClickZoom: false,
     geoObjectOpenBalloonOnClick: false,
     geoObjectHideIconOnBalloonOpen: false,
-    //geoObjectBalloonContentLayout: BalloonLayout,
     geoObjectBalloonContentLayout: getDetailsContentLayout(ymaps)
   });
 
