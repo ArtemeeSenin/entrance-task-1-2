@@ -40,7 +40,7 @@ export function createChart(container, data, isActive) {
         },
         scales: {
             xAxes: [{ ticks: { display: false } }],
-            yAxes: [{ ticks: { beginAtZero: true, max: Math.max.apply(null, data) } }]
+            yAxes: [{ ticks: { beginAtZero: true, max: Math.max(...data) } }]
         }
     }
   });
